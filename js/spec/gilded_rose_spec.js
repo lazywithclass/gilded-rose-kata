@@ -116,4 +116,26 @@ describe('Gilded Rose', function() {
 
   });
 
+  describe('Conjured', function() {
+
+    it('decrease quality twice as fast', function() {
+      items = [ new Item('Conjured', 4, 10) ];
+      update_quality();
+      expect(items[0].quality).toEqual(8);
+    });
+
+    it('quality is never negative', function() {
+      items = [ new Item('Conjured', 4, 0) ];
+      update_quality();
+      expect(items[0].quality).toEqual(0);
+    });
+
+    it('decrease sell in', function() {
+      items = [ new Item('Conjured', 4, 42) ];
+      update_quality();
+      expect(items[0].sell_in).toEqual(3);
+    });
+
+  });
+
 });

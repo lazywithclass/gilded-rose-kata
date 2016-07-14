@@ -15,7 +15,7 @@ function update_quality() {
     }
 
     if (name === 'Aged Brie') {
-      item.sell_in = item.sell_in - 1;
+      item.sell_in--;
       if (item.quality < 50) {
         item.quality++
       }
@@ -42,11 +42,18 @@ function update_quality() {
       continue;
     }
 
-    // anything else
+    if (name == 'Conjured') {
+      item.sell_in--;
+      if (item.quality > 0) {
+        item.quality -= 2;
+      }
+      continue;
+    }
 
+    // anything else
+    item.sell_in--;
     if (item.quality > 0) {
       item.quality--
     }
-    item.sell_in--;
   }
 }
