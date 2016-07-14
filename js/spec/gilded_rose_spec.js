@@ -86,6 +86,10 @@ describe('Gilded Rose', function() {
       items = [ new Item('Backstage passes to a TAFKAL80ETC concert', 4, 49) ];
       update_quality();
       expect(items[0].quality).toEqual(50)
+
+      items = [ new Item('Backstage passes to a TAFKAL80ETC concert', 4, 50) ];
+      update_quality();
+      expect(items[0].quality).toEqual(50);
     });
 
   });
@@ -96,10 +100,10 @@ describe('Gilded Rose', function() {
   // if we have to keep or remove
   describe('unnamed items', function() {
 
-    it('decrease quality if 50 or more', function() {
-      items = [ new Item('unnamed', 4, 50) ];
+    it('decrease quality if greater than 0', function() {
+      items = [ new Item('unnamed', 4, 1) ];
       update_quality();
-      expect(items[0].quality).toEqual(49);
+      expect(items[0].quality).toEqual(0);
     });
 
     it('quality is never negative', function() {
