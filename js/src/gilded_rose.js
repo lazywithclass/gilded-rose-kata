@@ -8,48 +8,45 @@ var items = []
 
 function update_quality() {
   for (var i = 0; i < items.length; i++) {
-    if (items[i].name != 'Aged Brie' && items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-      if (items[i].quality > 0) {
-        if (items[i].name != 'Sulfuras, Hand of Ragnaros') {
-          items[i].quality = items[i].quality - 1
-        }
-      }
-    } else {
-      if (items[i].quality < 50) {
-        items[i].quality = items[i].quality + 1
-        if (items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-          if (items[i].sell_in < 11) {
-            if (items[i].quality < 50) {
-              items[i].quality = items[i].quality + 1
-            }
-          }
-          if (items[i].sell_in < 6) {
-            if (items[i].quality < 50) {
-              items[i].quality = items[i].quality + 1
-            }
-          }
-        }
-      }
+    var item = items[i], name = item.name;
+
+    if (name == 'Sulfuras, Hand of Ragnaros') {
+      continue;
     }
-    if (items[i].name != 'Sulfuras, Hand of Ragnaros') {
-      items[i].sell_in = items[i].sell_in - 1;
-    }
-    if (items[i].sell_in < 0) {
-      if (items[i].name != 'Aged Brie') {
-        if (items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-          if (items[i].quality > 0) {
-            if (items[i].name != 'Sulfuras, Hand of Ragnaros') {
-              items[i].quality = items[i].quality - 1
-            }
-          }
-        } else {
-          items[i].quality = items[i].quality - items[i].quality
-        }
-      } else {
-        if (items[i].quality < 50) {
-          items[i].quality = items[i].quality + 1
-        }
+
+    if (name === 'Aged Brie') {
+      item.sell_in = item.sell_in - 1;
+      if (item.quality < 50) {
+        item.quality++
       }
+      if (item.sell_in < 0) {
+        item.quality++
+      }
+      continue;
     }
+
+    if (name == 'Backstage passes to a TAFKAL80ETC concert') {
+      item.sell_in--;
+      if (item.quality < 50) {
+        item.quality++
+      }
+      if (item.quality < 50 && item.sell_in < 11) {
+        item.quality++
+      }
+      if (item.quality < 50 && item.sell_in < 6) {
+        item.quality++
+      }
+      if (item.sell_in < 0) {
+        item.quality = 0
+      }
+      continue;
+    }
+
+    // anything else
+
+    if (item.quality > 0) {
+      item.quality--
+    }
+    item.sell_in--;
   }
 }
