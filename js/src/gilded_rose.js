@@ -17,10 +17,10 @@ function update_quality() {
     if (name === 'Aged Brie') {
       item.sell_in--;
       if (item.quality < 50) {
-        item.quality++
+        item.quality++;
       }
       if (item.sell_in < 0) {
-        item.quality++
+        item.quality++;
       }
       continue;
     }
@@ -28,16 +28,16 @@ function update_quality() {
     if (name == 'Backstage passes to a TAFKAL80ETC concert') {
       item.sell_in--;
       if (item.quality < 50) {
-        item.quality++
+        item.quality++;
       }
       if (item.quality < 50 && item.sell_in < 11) {
-        item.quality++
+        item.quality++;
       }
       if (item.quality < 50 && item.sell_in < 6) {
-        item.quality++
+        item.quality++;
       }
       if (item.sell_in < 0) {
-        item.quality = 0
+        item.quality = 0;
       }
       continue;
     }
@@ -53,7 +53,7 @@ function update_quality() {
     // anything else
     item.sell_in--;
     if (item.quality > 0) {
-      item.quality--
+      item.quality--;
     }
   }
 }
